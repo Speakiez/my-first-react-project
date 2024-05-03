@@ -13,11 +13,21 @@
     <script type="text/babel">
         const rootElement = document.getElementById("root")
         
-        const element = (
-            <div className="container">Hello World!</div>
-        )
+        const MyComponent = () => {
+            return (
+                <div className="container">Hello World!</div>
+            )
+        }
 
-        ReactDOM.render(element, rootElement)
+        const App = () => {
+            return (
+                <>
+                    <MyComponent />
+                </>
+            )
+        }
+
+        ReactDOM.render(<App />, rootElement)
     </script>
 </body>
 </html>
