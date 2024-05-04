@@ -1,38 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First React Project</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
     <div id="root"></div>
-    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script type="text/babel">
-        function MyComponent() {
-            const [username, setUsername] = React.useState('')
-
-            const handleChange = event => setUsername(event.target.value)
-
-            return (
-                <div>
-                    <input onChange={handleChange} type="text" placeholder="Input your name here"/>
-                    <h1 className="container">Hello {username || 'User'}!</h1>
-                </div>
-            )
-        }
-
-        function App() {
-            return (
-                <>
-                    <MyComponent />
-                </>
-            )
-        }
-
-        ReactDOM.render(<App />, document.getElementById("root"))
-    </script>
-</body>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
