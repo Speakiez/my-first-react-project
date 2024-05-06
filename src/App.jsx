@@ -12,12 +12,18 @@ function Tile({ value, onTileClick }) {
 }
 
 function Board() {
+    const [xIsNext, setXIsNext] = useState(true);
     const [tiles, setTiles] = useState(Array(9).fill(null));
 
     const handleClick = (index) => {
         const nextTiles = tiles.slice();
-        nextTiles[index] = "X";
+        if (xIsNext) {
+            nextTiles[index] = "X";
+        } else {
+            nextTiles[index] = "O";
+        }
         setTiles(nextTiles);
+        setXIsNext(!xIsNext);
     }
 
     return (
