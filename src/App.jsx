@@ -16,7 +16,7 @@ function Board() {
     const [tiles, setTiles] = useState(Array(9).fill(null));
 
     const handleClick = (index) => {
-        if (tiles[index]) return;
+        if (tiles[index] || calculateWinner(tiles)) return;
 
         const nextTiles = tiles.slice();
         if (xIsNext) {
@@ -79,7 +79,7 @@ function calculateWinner(tiles) {
             return tiles[a];
         }
     }
-    
+
     return null;
 }
 
