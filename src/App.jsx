@@ -11,9 +11,7 @@ function Tile({ value, onTileClick }) {
     )
 }
 
-function Board() {
-    const [xIsNext, setXIsNext] = useState(true);
-    const [tiles, setTiles] = useState(Array(9).fill(null));
+function Board({ xIsNext, tiles, onPlay }) {
     const winner = calculateWinner(tiles);
     let currentStatus;
 
@@ -26,8 +24,8 @@ function Board() {
         } else {
             nextTiles[index] = "O";
         }
-        setTiles(nextTiles);
-        setXIsNext(!xIsNext);
+        
+        onPlay(nextTiles);
     }
 
     if (winner) {
@@ -59,10 +57,19 @@ function Board() {
 }
 
 function App() {
+    const [xIsNext, setXIsNext] = useState(true);
+    const [history, setHistory] = useState([Array(9).fill(null)]);
+    const currentTiles = history[history.length - 1];
+
+    function handlePlay(nextTiles) {
+        setHistory([...history, nextTiles]);
+        setXIsNext(!xIsNext);
+    }
+
     return (
         <div className="game">
             <div className="game-board">
-                <Board />
+                <Board xIsNext={xIsNext} tiles={currentTiles} onPlay={handlePlay}/>
             </div>
             <div className="game-info">
                 <ol>{}</ol>
