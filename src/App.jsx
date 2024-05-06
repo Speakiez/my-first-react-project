@@ -14,6 +14,8 @@ function Tile({ value, onTileClick }) {
 function Board() {
     const [xIsNext, setXIsNext] = useState(true);
     const [tiles, setTiles] = useState(Array(9).fill(null));
+    const winner = calculateWinner(tiles);
+    let currentStatus;
 
     const handleClick = (index) => {
         if (tiles[index] || calculateWinner(tiles)) return;
@@ -28,8 +30,15 @@ function Board() {
         setXIsNext(!xIsNext);
     }
 
+    if (winner) {
+        currentStatus = "Winner: " + winner;
+    } else {
+        currentStatus = "Next player: " + (xIsNext ? "X" : "O");
+    }
+
     return (
         <>  
+            <div className="status">{ currentStatus }</div>
             <div className="board-row">
                 <Tile value={tiles[0]} onTileClick={() => handleClick(0)} />
                 <Tile value={tiles[1]} onTileClick={() => handleClick(1)} />
